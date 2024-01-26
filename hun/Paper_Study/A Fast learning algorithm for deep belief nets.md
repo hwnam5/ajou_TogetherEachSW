@@ -130,5 +130,35 @@
 ## $\frac{\partial logp(V^{0})}{\partial w^{00}_{ij}} = <h^{0}_{j}(v^{0}_{i} - {v}^{1}_{i})> + <v^{1}_{j}(h^{0}_{i} - {h}^{1}_{i})> + <h^{1}_{j}(v^{1}_{i} - {v}^{2}_{i})> + ...$
 - 이 식을 풀어 쓰면, 가장 처음과 마지막 항을 제외하고 서로 상쇄되어 없어지고 이는 볼츠만 머신 수식과 같아진다.
 
+# Restricted Boltzmann machines and contrastive divergence learning
+
+### Figure 4 : alternating Gibbs 샘플링을 사용하는 Markov Chain
+<img src="Pasted image 20240126133222.png">
+
+### Gibbs Sampling
+- MCMC Algorithm의 특별한 방법 중 하나.
+- 먼저 확률변수 x를 d개의 요소로 분해할 수 있다고 가정해 보자.
+	- $x = {x_{1}, x_{2}, ... , x_{d}}$
+- 이때, 깁스 샘플러에서 각 요소는 1. 무작위(randomly) 또는 2. 체계적(systematically)으로 선택되며, 각 샘플은 target density f(x)의 full conditional function에서 새로운 표본으로 업데이트 된다.
+- 만약 x의 현재 반복 상태가 아래와 같이 주어지면 Gibbs sampler는 다음을 반복해서 Markov Chain을 형성.
+	- $x^{t} = {x^{t}_{1}, x^{t}_{2}, ... , x^{t}_{d}}$
+Systematic-scan
+Step 1. Draw $x^{t+1}_{1}$ from $p(x_{1} | {x^{t}_{2}, x^{t}_{3}, ... , x^{t}_{d}})$
+Step 2. Draw $x^{t+1}_{2}$ from $p(x_{2} | {x^{t}_{1}, x^{t}_{3}, ... , x^{t}_{d}})$
+...
+Step d. Draw $x^{t+1}_{d}$ from $p(x_{1} | {x^{t}_{1}, x^{t}_{2}, ... , x^{t}_{d-1}})$
+- 여기서 각각의 conditional distribution은 모두 closed form으로 Gibbs sampling에서 d개의 conditional distribution은 모두 우리가 알고 있는 standard한 분포이다.(Normal, Gamm 등)
+- Gibbs의 장점
+	- 3차원을 넘어가면 시각화 할 수가 없는데 깁스 샘플링을 통해 고차원의 문제를 1차원의 문제로 바꿔 해결할 수 있다.
+---
+- RBM에서 데이터를 생성하려면 레이어 중 하나에서 무작위 상태로 시작한 다음 교대로 Gibbs 샘플링을 수행할 수 있다. 
+- Figure 4에서 처럼 한 레이어의 모든 유닛은 레이어에 있는 유닛의 현재 상태를 고려해 병렬로 업데이트 된다.
+- 이는 가중치가 묶인 infinite belief net에서 데이터를 생성하는 방법과 정확히 동일함.
+- RBM에서 최대 likelihood 학습을 하기 위해 두 상관 관계의 차이를 이용할 수 있다.
+- $w_{ij}$에 대해 visible unit과 hidden unit의 상관관계 <$v^{0}_{i}h^{0}_{i}$>를 측정한다.
+- 그런 다음 교대 Gibbs sampling을 수행해 고정 분포에 도달할 때까지 Markov Chain을 실행하고 상관관계 <$v^{0}_{i}h^{0}_{i}$>를 측정한다.
+- 훈련 데이터의 로그 확률의 기울기(미분값)은 다음과 같음.(2.1에서 계산된 식 정리한 것)
+##  $\frac{\partial logp(V^{0})}{\partial w_{ij}} = <v^{0}_{i}{h}^{0}_{j}> -<v^{\infty}_{i}h^{\infty}_{j}>$ 
+
 
 
