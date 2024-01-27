@@ -159,6 +159,84 @@ Step d. Draw $x^{t+1}_{d}$ from $p(x_{1} | {x^{t}_{1}, x^{t}_{2}, ... , x^{t}_{d
 - 그런 다음 교대 Gibbs sampling을 수행해 고정 분포에 도달할 때까지 Markov Chain을 실행하고 상관관계 <$v^{0}_{i}h^{0}_{i}$>를 측정한다.
 - 훈련 데이터의 로그 확률의 기울기(미분값)은 다음과 같음.(2.1에서 계산된 식 정리한 것)
 ##  $\frac{\partial logp(V^{0})}{\partial w_{ij}} = <v^{0}_{i}{h}^{0}_{j}> -<v^{\infty}_{i}h^{\infty}_{j}>$ 
+## KL-divergence (Kullback-leibler divergence)
+- 두 확률분포의 차이를 계산하는 데에 사용하는 함수.
+- 어떤 이상적인 분포에 대해, 그 분포를 근사하는 다른 분포를 사용해 샘플링을 한다면 발생할 수 있는 정보 엔트로피 차이를 계산한다.
+- 상대 엔트로피(relative entropy), 정보 획득량(information gain), 인포메이션 다이버전스(information divergence)라고도 한다.
 
+$H(p, q) = -\sum_{i} p_{i}\ log\ q_{i}$
+			$=\ -\sum_{i} p_{i}\ log\ q_{i}\ -\sum_{i} p_{i}\ log\ p_{i}\ +\sum_{i} p_{i}\ log\ p_{i}$
+			$=\ H(p)\ +\sum_{i} p_{i}\ log\ p_{i}\ -\sum_{i} p_{i}\ log\ q_{i}$
+			$=\ H(p)\ +\sum_{i} p_{i}\ log\ \frac{p_{i}}{q_{i}}$
+- (H(p) : p의 엔트로피)
+- p의 엔트로피에 이만큼($\sum_{i} p_{i}\ log\ \frac{p_{i}}{q_{i}}$) 더해진 것이 cross entropy($H(p,q)$)가 된다.
+- $\sum_{i} p_{i}\ log\ \frac{p_{i}}{q_{i}}$가 분포 p와 분포 q의 정보량 차이이다.
+- 이 정보량 차이가 KL-divergence.
+- KL-divergence는 p와 q의 cross entropy에서 p의 엔트로피를 뺀 값.
+	- $KL(p||q)\ = \ H(p,q) - H(p)$
+- $D_{KL}(p||q)$로 표기 하기도 함.
+### KL-divergence의 특성
+1. $KL(p|q) >= 0$
+	- 0 이상이다. 
+2. $KL(p|q) != KL(q|p)$
+	- KL-divergence는 거리 개념이 아니다. 
+	- asymmetric하다.
+### KL-divergence와 log likelihood
+- 전체를 알 수 없는 분포 p(x) 에서 추출되는 데이터를 우리가 모델링하고 싶다고 가정해보자. 우리는 이 분포에 대해 어떤 학습 가능한 parameter $\theta$의 parameter distribution $q(x|\theta)$를 이용해 근사 시킨다고 가정해보자. 
+- 이 $\theta$를 결정하는 방법 중 하나는 p(x)와 $q(x|\theta)$ 사이의 KL-divergence를 최소화시키는 $\theta$를 찾는 것이다.
+- p(x) 자체를 모르기 때문에 이는 직접 할 수는 없다.
+- 하지만 p(x)에서 추출한 샘플 데이터(training set) : ($x_{n}$)를 알 때 p(x)에 대한 기댓값은 그 샘플들의 평균을 통해 구할 수 있다.
+	- $KL(p||q) = \frac{1}{N}\ \sum_{1}^{N} \{-ln\ q(x_{n}|\theta) + ln\ p(x_{n})\}$
+- ln p($x_{n}$)은 $\theta$ 에 대해 독립이고, $-ln(q(x_{n}|\theta))$는 training set으로 얻은 q(x|$\theta$) 분포 하에서 $\theta$에 대한 negative log likelihood이다.
+- 그러므로 KL-divergence를 minimize하는 것이 likelihood를 maximize하는 것과 같다.
+---
+- 이 논문에서 대조적 발산 학습(contrastive divergence learning)에서는 두번째 상관 관계를 측정하기 전에 (h 업데이트 후, v 업데이트 하는 각 단계에서) Markov Chain을 실행한다.
+- 이 방법은 infinite belief net의 상위 layer에서 나오는 부가효과를 무시한 것인데,
+- 이런 무시된 모든 도함수의 합은 $V_{n}$층의 사후 분포의 로그 확률의 도함수이다.
+- 이는 $V_{n}$층의 사후 분포, $P^{n}_{\theta}$ 및 평형 사이의 KL-divergence의 도함수이기도 하다.
+- 따라서 대조 발산 학습은 두 KL-divergence 차이를 최소화한다.
+	- $KL(P^{0}||P^{\infty}_{\theta}) - KL(P^{n}_{\theta}||P^{\infty}_{\theta})$
+- 샘플링 노이즈를 무시하면 위 차이는 결코 음수가 아님.(KL 특징)
+- $P_{\theta}$는 현재 모델 매개변수에 따라 달라지며 매개변수 변경에 따라 $P^{n}_{\theta}$가 변경되는 방식은 대조 발산 학습에서 무시된다는 점에 유의해야 함. 
+- RBM(제한된 볼츠만 머신)에서의 대조 발산 학습은 매우 효과적이다.
+- 실수 단위 다양한 샘플링, 자연 이미지와 생물학적 세포 이미지의 노이즈 제거를 위한 모델링에 매우 성공적이었다. 
+- 하지만 이 결과들은 많은 비용을 필요로하며, 명백한 방식으로 적용했을때 학습에 실패했다.
+- 그래서 RBM과 가중치가 묶인 네트워크 간 동등성이 가중치가 묶이지 않은 다층 네트워크에 대한 효율적인 학습 알고리즘을 제안한다는 것을 보여준다.
 
+# 4. A greedy learning algorithm for transforming representations
+
+- 복잡한 모델을 학습하는 효율적인 방법은 순차적으로 학습되는 간단한 모델 세트를 결합하는 것.
+- 시퀸스의 각 모델이 이전 모델과 다른 것을 학습하도록 강제하기 위해 각 모델이 학습된 후 데이터에 수정이 일어난다.
+	1. boosting : 시퀸스 각 모델은 이전 모델이 잘못된 경우를 강조하는 재가중 데이터에 대해 훈련된다.
+	2. PCA : 모델링된 방향의 분산이 제거되어 다음 모델링된 방향이 직교 부분 공강에 놓인다.
+	3. Projection pursuit(투영 추구) : 데이터 공간의 한 방향을 비선형적으로 왜곡해 해당 방향의 모든 비가우시안성을 제거함으로써(정규분포가 아닌 것 제거) 데이터가 변형됨.
+- 그리디 알고리즘의 기본 아이디어는 시퀸스의 각 모델이 데이터의 다른 표현을 수신하도록 허용하는 것.
+	- 모델은 입력 벡터에 대해 비선형 변환을 수행하고 시퀸스의 다음 모델에 대한 입력으로 사용될 벡터를 출력으로 생성함.
+	- 이하 설명에서는 가장 단순한 경우를 가정.(모델의 특성 수 동일, 등)
+	- $W_{0}$를 학습하는 과정은 RBM을 학습하는 작업으로 축소되며, 대조발산을 최소화함으로써 좋은 근사값을 찾을 수 있다.
+	- $W_{0}$가 학습되면 $W^{T}_{0}$을 통해 데이터를 매핑해 첫 번째 hidden layer에서 더 높은 수준의 데이터를 생성할 수 있다.
+- <img src="Pasted image 20240127162919.png">
+- RBM이 원본 데이터에 대해 완벽한 모델이라 가정한다면 상위 level의 데이터는 이미 상위 level 가중치 행렬에 의해 완벽히 모델링되었을 것이다.
+- 그러나 일반적으로 RBM은 원본 데이터를 완벽히 모델링하지 않기 때문에 그리디 알고리즘을 사용해 생성 모델을 더 좋게 만들 수 있다.
+	1. 모든 가중치 행렬이 동일하다고 가정하고 $W_{0}$를 학습한다.
+	2. 각각의 hidden layer를 위한 RBM을 독립적으로 학습하고, 이후 이전 계층의 활성화를 고정시킨 채로 다음 계층을 학습한다. 이는 각각의 hidden layer를 위한 사후 분포를 추론하고자 하는 것.
+	3. 더 높은 가중치 행렬을 모두 서로 연결하고 $W_{0}$에서 연결을 해제한 상태에서 $W^{T}_{0}$를 사용하여 원본 데이터를 변환하여 생성된 상위 수준 데이터의 RBM 모델을 학습한다. => 독립적으로 학습된 hidden layer의 활성화로 visible layer를 재구성(생성)함.
+- 각 hidden layer를 최적으로 학습한다는 관점에서 greedy.
+- 5페이지하단~6페이지상단 : 이 그리디 알고리즘으로 상위 레벨의 가중치를 변화시키면 생성모델이 개선됨을 보장하는 (Neal and Hinton)의 수학적 증명. - 생략.
+
+# 5. Back-Fitting with the up-down algorithm
+- 이 논문에서 설명한 greedy algorithm은 효율적이지만 최적이 아닐 수 있다. 
+- 특히 지도학습에서는 라벨이 부족하고 각 라벨이 파라미터에 제한적인 정보를 제공하기 때문에 이런 sub-optimality(greedy algorithm)은 비교적 중요하지 않을 수 있다.
+- 반면 비지도학습에서는 각 사례가 매우 고차원일 수 있는데 이러한 경우 언더피팅이 심각한 문제가 될 수 있어, 이전에 학습된 가중치를 수정하는 학습이 필요함.
+- 따라서 greedy learning를 통해 각 layer의 가중치에 좋은 초기값을 학습한 후, recognition weights와 generative weights를 분리해, 각 층의 사후분포가 아래층의 변수 값에 대해 조건부 독립이라는 제한을 유지하는 방법이 제안된다.
+- 이후 wake-sleep algorithm의 변형을 사용해 높은 수준의 가중치가 낮은 수준의 가중치에 영향을 미칠 수 있도록 해야 한다.
+	- wake-sleep algorithm : Wake 단계에서는 생성 모델의 파라미터를 업데이트하고, Sleep 단계에서는 이러한 업데이트된 파라미터를 사용하여 모델을 학습.
+
+- Down-pass
+	- 상위 연관 메모리에서 시작해 top-down 생성 연결을 사용해 확률론적으로 각 하위 layer를 활성화시킴.
+	- 이 과정동안에는 undirected 연결과 생성 지향 연결은 변경되지 않는다.
+	- 오직 bottom-up recognition weight만 수정된다.
+	- 이는 wake-sleep algorithm의 sleep단계와 동일.
+	- Contrastive form(대조적 형태) : Down-pass를 수행하기 전 up-pass에 의해 연관 메모리가 초기화된 평형 분포에서 샘플링하는 대신 깁스 샘플링을 수행해 생성.
+	- 대조적 형태는 실제 데이터의 표현에 대해 인식 가중치가 학습되는 것을 보장하고 Mod Average문제를 제거하는데 도움이 된다.
 
