@@ -2,6 +2,8 @@
 동계 모각소 레포
 
 구성원 : 공종혁(소프트웨어학과 20학번), 남현원(소프트웨어학과 20학번), 정용훈 (소프트웨어학과 20학번)
+
+[![Github Blog](https://img.shields.io/badge/console.log('Hun')-2496ED?style=for-the-badge)](https://hun9008.github.io)
 # Commit Rule
 
 - main branch 하나만 사용.
