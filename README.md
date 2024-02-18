@@ -22,6 +22,7 @@
   - nam : 남현원 개인 폴더
 
 ## 1주차 (1.1~1.7)
+
 - 공종혁
   - ...
 - 남현원
@@ -30,8 +31,10 @@
     - 지도학습
 - 정용훈
   - SWma 지원 대비 PS문제풀이. + SQL 인프런 강의.
-  - "A Fast learning algorithm for deep belief nets" 사전 정보 조사 및 introduction.    
+  - "A Fast learning algorithm for deep belief nets" 사전 정보 조사 및 introduction. 
+   
 ## 2주차 (1.8~1.14)
+
 - 공종혁
   - ...
 - 남현원
@@ -44,7 +47,9 @@
 - 정용훈
   - SWma 지원 대비 PS문제풀이. + SQL 인프런 강의.
   - 감기 이슈.. 
+
 ## 3주차 (1.15~1.21)
+
 - 공종혁
   - ...
 - 남현원
@@ -57,7 +62,9 @@
   - 논문 chapter 1~2 정리.
   - 미래와 소프트웨어 빅데이터 아이디어톤 본격적으로 시작.
     - [빅데이터아이디어톤 레포](https://github.com/hun9008/ideaton_mireaSW.git)
+
 ## 4주차 (1.22~1.28)
+
 - 공종혁
   - ...
 - 남현원
@@ -68,7 +75,9 @@
   - 논문 chapter 3~5 정리.
   - 미래와 소프트웨어 빅데이터 아이디어톤 마무리 & 제출.
     - [빅데이터아이디어톤 레포](https://github.com/hun9008/ideaton_mireaSW.git)
+
 ## 5주차 (1.29~2.4)
+
 - 공종혁
   - ...
 - 남현원
@@ -79,8 +88,10 @@
 - 정용훈
   - SWma 지원 대비 PS문제풀이. + SQL 고득점 kit 60% 완료.
   - 논문 발표 및 피드백.
-  - 다음 논문 선정.
+  - 다음 논문 선정. (UDA논문 같이 읽기로 결정)
+  - 
 ## 6주차 (2.5~2.11)
+
 - 공종혁
   - ...
 - 남현원
@@ -93,17 +104,33 @@
       - 배열 심화 코테 문제
 - 정용훈
   - PS 문제풀이 & 논문 정리를 개인 github blog로 이전.
-  - [개인 github blog 주소](https://hun9008.github.io)
+    - [개인 github blog 주소](https://hun9008.github.io)
+    - Ruby와 jekyll을 이용한 개인 블로그 제작.
+      - 기존에 markdown으로 공부한 것들을 정리하다가, 이를 git push만 하면 html로 바꿔주는 기능이 있어 만들어 봄.
+      - Github Page로 배포.
+  - SWma 지원 대비 PS문제풀이. + SQL 고득점 kit 완료.
+  - UDA논문 읽고 정리.
 
 ## 7주차 (2.12~2.18)
+
 - 공종혁
   - ...
 - 남현원
   - ...
 - 정용훈
+  - SWma 지원 대비 PS문제풀이. + SQL 고득점 kit 반복.
+  - Selenium과 scheduler를 이용한 해외기사번역 자동화 프로그램.
+    - [프로젝트 github 주소](https://github.com/hun9008/dailyFinancialNews)
+  - UDA논문 발표 & 피드백.
+    - 논문 구현 및 다음 논문 선정.(GoogLeNet 선정)
+  - GoogLeNet 읽고 정리.
+  - 
 ## 8주차 (2.19~2.25)
+
 - 공종혁
   - ...
 - 남현원
   - ...
 - 정용훈
+
+
