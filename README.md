@@ -24,7 +24,8 @@
 ## 1주차 (1.1~1.7)
 
 - 공종혁
-  - ...
+  - coursera : Supervised Machine Learning: Regression and Classification 수강
+    - 1주, 2주 학습 후 notion에 정리.
 - 남현원
   - 파이썬 라이브러리를 활용한 머신러닝
     - k-최근접 이웃 알고리즘
@@ -36,7 +37,10 @@
 ## 2주차 (1.8~1.14)
 
 - 공종혁
-  - ...
+  - coursera : Supervised Machine Learning: Regression and Classification 수강.
+    - 3주 학습 후 notion에 정리.
+  - cs231 2~7까지 수강.
+    - 2~5장 notion에 정리.
 - 남현원
   - 딥러닝 스터디
     - MLP 모델로 MNIST 학습하기
@@ -51,7 +55,8 @@
 ## 3주차 (1.15~1.21)
 
 - 공종혁
-  - ...
+  - cs231 : 7~14까지 수강
+    - 중요도와 양으로 인해 notion에 작성 보류 후에 다시 공부한다면 재 작성
 - 남현원
   - 파이썬 라이브러리를 활용한 머신러닝
     - 데이터 표현과 특성 공학
@@ -66,7 +71,8 @@
 ## 4주차 (1.22~1.28)
 
 - 공종혁
-  - ...
+  - FixBi - Bridging Domain Spaces for Unsupervised Domain Adaptation 논문 공부
+    - notion에 정리
 - 남현원
   - 미래와 소프트웨어 빅데이터 아이디어톤 마무리 & 제출.
     - [빅데이터아이디어톤 레포](https://github.com/hun9008/ideaton_mireaSW.git)
@@ -79,7 +85,8 @@
 ## 5주차 (1.29~2.4)
 
 - 공종혁
-  - ...
+  - FixBi - Bridging Domain Spaces for Unsupervised Domain Adaptation 논문 공부
+    - notion에 정리
 - 남현원
   - 논문 스터디 준비
     - AlexNet
@@ -93,7 +100,9 @@
 ## 6주차 (2.5~2.11)
 
 - 공종혁
-  - ...
+  - Co-teaching: Robust Training of Deep Neural
+Networks with Extremely Noisy Labels 논문 공부
+    - notion에 정리
 - 남현원
   - 머신러닝 공부
     - 앤드류 응 교수님의 머신러닝 강의
@@ -114,9 +123,11 @@
 ## 7주차 (2.12~2.18)
 
 - 공종혁
-  - ...
+  - Co-teaching: Robust Training of Deep Neural
+Networks with Extremely Noisy Labels 논문 공부
+    - notion에 정리
 - 남현원
-  - ...
+  - …
 - 정용훈
   - SWma 지원 대비 PS문제풀이. + SQL 고득점 kit 반복.
   - Selenium과 scheduler를 이용한 해외기사번역 자동화 프로그램.
@@ -128,9 +139,8 @@
 ## 8주차 (2.19~2.25)
 
 - 공종혁
-  - ...
+  - …
 - 남현원
-  - ...
+  - …
 - 정용훈
 8주차 활동입니다.
-
