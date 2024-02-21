@@ -143,4 +143,6 @@ Networks with Extremely Noisy Labels 논문 공부
 - 남현원
   - …
 - 정용훈
-8주차 활동입니다.
+ - SWma 지원 대비 PS 문제를 프로그래머스 환경에서 풀어 봄.
+ - GoogLeNet 논문 발표 & 피드백.
+ - 동계 모각소 활동 내용 정리.
