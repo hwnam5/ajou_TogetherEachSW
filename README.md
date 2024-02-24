@@ -127,7 +127,8 @@ Networks with Extremely Noisy Labels 논문 공부
 Networks with Extremely Noisy Labels 논문 공부
     - notion에 정리
 - 남현원
-  - …
+- 논문 스터디
+  - RegNet 논문 읽고 정리하기
 - 정용훈
   - SWma 지원 대비 PS문제풀이. + SQL 고득점 kit 반복.
   - Selenium과 scheduler를 이용한 해외기사번역 자동화 프로그램.
@@ -141,7 +142,9 @@ Networks with Extremely Noisy Labels 논문 공부
 - 공종혁
   - …
 - 남현원
-  - …
+  - 모각소 활동 정리
+    - github, 노션 정리
+    - 발표 PPT 자료 만들기
 - 정용훈
  - SWma 지원 대비 PS 문제를 프로그래머스 환경에서 풀어 봄.
  - GoogLeNet 논문 발표 & 피드백.
