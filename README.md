@@ -140,7 +140,7 @@ Networks with Extremely Noisy Labels 논문 공부
 ## 8주차 (2.19~2.25)
 
 - 공종혁
-  - …
+  - mixup 논문 리뷰 및 발표
 - 남현원
   - 모각소 활동 정리
     - github, 노션 정리
